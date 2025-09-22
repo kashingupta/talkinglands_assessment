@@ -1,15 +1,14 @@
-import pg from 'pg';
-import dotenv from 'dotenv';
+const pg = require('pg');
+const dotenv = require('dotenv');
 dotenv.config();
-
 const { Pool } = pg;
 
-export const pool = new Pool({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   application_name: 'spatial-backend'
 });
 
-export async function query(sql, params) {
+async function query(sql, params) {
   const client = await pool.connect();
   try {
     const res = await client.query(sql, params);
@@ -18,3 +17,5 @@ export async function query(sql, params) {
     client.release();
   }
 }
+
+module.exports = { pool, query };

@@ -1,6 +1,6 @@
-import express from 'express';
-import { query } from '../db.js';
-import { assertPolygonGeoJSON, parsePagination } from '../validators.js';
+const express = require('express');
+const {query} = require('../db.js');
+const {assertPolygonGeoJSON, parsePagination} = require('../validators.js');
 
 const router = express.Router();
 
@@ -129,4 +129,5 @@ router.get('/:id/points', async (req, res, next) => {
     res.json({ count: r.rowCount, items: r.rows });
   } catch (e) { next(e); }
 });
-export default router;
+
+module.exports = router;

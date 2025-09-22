@@ -1,6 +1,6 @@
-import express from 'express';
-import { query } from '../db.js';
-import { assertPointGeoJSON, parsePagination } from '../validators.js';
+const express = require('express');
+const {query} = require('../db.js');
+const {assertPointGeoJSON, parsePagination} = require('../validators.js');
 
 const router = express.Router();
 
@@ -134,4 +134,4 @@ router.get('/nearest/to', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
-export default router;
+module.exports = router;
